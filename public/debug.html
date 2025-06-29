@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PitchArchitect Debug</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            background: white;
+            border-left: 3px solid #ddd;
+        }
+        .error {
+            border-left-color: red;
+            color: red;
+        }
+        .success {
+            border-left-color: green;
+            color: green;
+        }
+        .warning {
+            border-left-color: orange;
+            color: orange;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>PitchArchitect Debug Console</h1>
+    
+    <h2>System Status</h2>
+    <div id="system-status"></div>
+    
+    <h2>API Tests</h2>
+    <button onclick="testAPI('health')">Test Health</button>
+    <button onclick="testAPI('examples')">Test Examples</button>
+    <button onclick="testAPI('analyze')">Test Analyze</button>
+    
+    <h2>Console Logs</h2>
+    <div id="console-output"></div>
+    
+    <script>
+        const output = document.getElementById('console-output');
+        const status = document.getElementById('system-status');
+        
+        // Override console methods to capture logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        function addLog(message, type = 'log') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            output.appendChild(entry);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addLog(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addLog(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addLog(args.join(' '), 'warning');
+        };
+        
+        // Check system status
+        async function checkSystemStatus() {
+            const checks = [
+                { name: 'DOM Ready', test: () => document.readyState === 'complete' },
+                { name: 'LocalStorage Available', test: () => {
+                    try { localStorage.setItem('test', 'test'); localStorage.removeItem('test'); return true; }
+                    catch(e) { return false; }
+                }},
+                { name: 'Fetch API Available', test: () => typeof fetch !== 'undefined' },
+                { name: 'Server Reachable', test: async () => {
+                    try {
+                        const response = await fetch('/health');
+                        return response.ok;
+                    } catch(e) { return false; }
+                }}
+            ];
+            
+            status.innerHTML = '';
+            for (const check of checks) {
+                const result = await check.test();
+                const div = document.createElement('div');
+                div.className = `log-entry ${result ? 'success' : 'error'}`;
+                div.textContent = `${check.name}: ${result ? 'PASS' : 'FAIL'}`;
+                status.appendChild(div);
+            }
+        }
+        
+        // Test API endpoints
+        async function testAPI(endpoint) {
+            console.log(`Testing API: ${endpoint}`);
+            
+            try {
+                let response;
+                
+                switch(endpoint) {
+                    case 'health':
+                        response = await fetch('/health');
+                        break;
+                    case 'examples':
+                        response = await fetch('/api/examples');
+                        break;
+                    case 'analyze':
+                        // First get examples
+                        const examplesRes = await fetch('/api/examples');
+                        const examples = await examplesRes.json();
+                        
+                        response = await fetch('/api/analyze', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                script1: examples.script1,
+                                script2: examples.script2,
+                                topic: 'Test topic',
+                                targetLength: 1400,
+                                callToAction: 'Test CTA'
+                            })
+                        });
+                        break;
+                }
+                
+                const data = await response.json();
+                console.log(`API ${endpoint} response:`, JSON.stringify(data, null, 2).substring(0, 200) + '...');
+                
+                if (response.ok) {
+                    addLog(`API ${endpoint}: SUCCESS`, 'success');
+                } else {
+                    addLog(`API ${endpoint}: FAILED (${response.status})`, 'error');
+                }
+            } catch (error) {
+                console.error(`API ${endpoint} error:`, error);
+                addLog(`API ${endpoint}: ERROR - ${error.message}`, 'error');
+            }
+        }
+        
+        // Load main script and check for errors
+        function loadMainScript() {
+            const script = document.createElement('script');
+            script.src = 'script.js';
+            script.onload = () => {
+                console.log('Main script loaded successfully');
+                checkMainPageElements();
+            };
+            script.onerror = () => {
+                console.error('Failed to load main script');
+            };
+            document.body.appendChild(script);
+        }
+        
+        // Check if main page elements exist
+        function checkMainPageElements() {
+            const elements = [
+                'loadExamples', 'analyzeBtn', 'generateBtn', 'copyScript',
+                'proceedReviewBtn', 'viewMappingBtn', 'startOverBtn', 'downloadBtn',
+                'improveScriptBtn', 'loadingOverlay', 'loadingText', 'successMessage',
+                'script1', 'script2', 'topic', 'targetLength', 'callToAction'
+            ];
+            
+            console.log('Checking for required elements...');
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (!element) {
+                    console.error(`Missing element: #${id}`);
+                }
+            });
+        }
+        
+        // Run checks on load
+        window.addEventListener('DOMContentLoaded', async () => {
+            console.log('Debug console initialized');
+            await checkSystemStatus();
+            
+            // Load index.html content to check structure
+            try {
+                const response = await fetch('/');
+                const html = await response.text();
+                console.log('Main page loaded, size:', html.length, 'bytes');
+                
+                // Check for script tag
+                if (html.includes('script.js')) {
+                    console.log('script.js reference found in HTML');
+                } else {
+                    console.error('script.js reference NOT found in HTML');
+                }
+                
+                // Check for required elements in HTML
+                const requiredElements = ['loadExamples', 'analyzeBtn', 'script1', 'script2'];
+                requiredElements.forEach(id => {
+                    if (html.includes(`id="${id}"`)) {
+                        console.log(`Element #${id} found in HTML`);
+                    } else {
+                        console.error(`Element #${id} NOT found in HTML`);
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Failed to load main page:', error);
+            }
+        });
+        
+        // Add error handler
+        window.addEventListener('error', (event) => {
+            console.error('Global error:', event.error || event.message);
+        });
+    </script>
+</body>
+</html>

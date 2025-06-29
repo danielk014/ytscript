@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PitchArchitect - AI YouTube Script Writer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <svg class="logo" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="#4F46E5" stroke-width="2"/>
+                        <path d="M16 8V16L20 20" stroke="#4F46E5" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="16" cy="16" r="3" fill="#4F46E5"/>
+                    </svg>
+                    <h1>PitchArchitect</h1>
+                </div>
+                <div class="header-actions">
+                    <span class="credits">R r4342</span>
+                    <button class="sign-in-btn">Sign In</button>
+                </div>
+            </div>
+            <p class="tagline">AI-powered YouTube script writer that analyzes reference scripts and generates compelling content using proven psychological tactics</p>
+            <button class="tactics-library-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6 6h4M6 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                View Tactics Library
+            </button>
+        </header>
+
+        <nav class="workflow-nav">
+            <div class="workflow-step active" data-step="1">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 8h6M7 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Input Scripts</span>
+            </div>
+            <svg class="workflow-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 4l4 4-4 4" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="workflow-step" data-step="2">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Analysis</span>
+            </div>
+            <svg class="workflow-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 4l4 4-4 4" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="workflow-step" data-step="3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3l2 2-2 2M10 13l2 2-2 2M13 10H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Generation</span>
+            </div>
+            <svg class="workflow-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 4l4 4-4 4" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="workflow-step" data-step="4">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 10l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Review</span>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Step 1: Input Scripts -->
+            <section id="step1" class="step-content active">
+                <div class="step-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="4" y="5" width="16" height="14" rx="2" stroke="#4F46E5" stroke-width="1.5"/>
+                        <path d="M8 9h8M8 13h5" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <h2>Input Your Reference Scripts</h2>
+                </div>
+                <p class="step-description">Provide two high-performing scripts and your video details to get started</p>
+                
+                <div class="scripts-grid">
+                    <div class="script-input-group">
+                        <label>Reference Script #1</label>
+                        <div class="input-toggle">
+                            <button class="toggle-btn active" data-mode="text" data-target="script1">Text</button>
+                            <button class="toggle-btn" data-mode="url" data-target="script1">YouTube URL</button>
+                        </div>
+                        <textarea id="script1" class="script-input active" placeholder="Paste your first reference script here..." rows="12"></textarea>
+                        <div id="script1-url-container" class="url-input-container">
+                            <input type="text" id="script1-url" class="url-input" placeholder="https://youtube.com/watch?v=...">
+                            <button class="fetch-transcript-btn" data-target="script1">Get Instructions</button>
+                        </div>
+                    </div>
+                    <div class="script-input-group">
+                        <label>Reference Script #2</label>
+                        <div class="input-toggle">
+                            <button class="toggle-btn active" data-mode="text" data-target="script2">Text</button>
+                            <button class="toggle-btn" data-mode="url" data-target="script2">YouTube URL</button>
+                        </div>
+                        <textarea id="script2" class="script-input active" placeholder="Paste your second reference script here..." rows="12"></textarea>
+                        <div id="script2-url-container" class="url-input-container">
+                            <input type="text" id="script2-url" class="url-input" placeholder="https://youtube.com/watch?v=...">
+                            <button class="fetch-transcript-btn" data-target="script2">Get Instructions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-details">
+                    <div class="input-group">
+                        <label for="topic">Video Topic</label>
+                        <input type="text" id="topic" placeholder="e.g., How to learn Spanish fast">
+                    </div>
+                    <div class="input-group">
+                        <label for="targetLength">Target Length (words)</label>
+                        <input type="text" id="targetLength" placeholder="1400" value="1400">
+                    </div>
+                    <div class="input-group">
+                        <label for="callToAction">Call to Action</label>
+                        <input type="text" id="callToAction" placeholder="Download my free guide">
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <button id="loadExamples" class="btn-secondary">Load Example Scripts</button>
+                    <button id="analyzeBtn" class="btn-primary">Analyze Scripts</button>
+                </div>
+            </section>
+
+            <!-- Step 2: Analysis -->
+            <section id="step2" class="step-content">
+                <div class="step-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="8" stroke="#4F46E5" stroke-width="1.5"/>
+                        <path d="M12 8v4l3 2" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <h2>Deep Script Analysis Complete</h2>
+                </div>
+
+                <div class="analysis-tabs">
+                    <button class="analysis-tab active" data-tab="analysis">Analysis</button>
+                    <button class="analysis-tab" data-tab="synthesis">Synthesis</button>
+                    <button class="analysis-tab" data-tab="blueprint">Blueprint</button>
+                    <button class="analysis-tab generate-tab" data-tab="generate">Generate</button>
+                </div>
+
+                <div class="analysis-content">
+                    <div id="analysis-tab" class="tab-content active">
+                        <div class="scripts-analysis">
+                            <div class="script-analysis-card">
+                                <div class="analysis-header">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="3" y="4" width="14" height="12" rx="2" stroke="#6366F1" stroke-width="1.5"/>
+                                    </svg>
+                                    <h3>Reference Script #1</h3>
+                                </div>
+                                <div class="tactics-count">
+                                    <span>Tactics Detected</span>
+                                    <span class="count" id="tactics1-count">0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                                <div class="tactics-tags" id="tactics1-tags"></div>
+                            </div>
+
+                            <div class="script-analysis-card">
+                                <div class="analysis-header">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="3" y="4" width="14" height="12" rx="2" stroke="#10B981" stroke-width="1.5"/>
+                                    </svg>
+                                    <h3>Reference Script #2</h3>
+                                </div>
+                                <div class="tactics-count">
+                                    <span>Tactics Detected</span>
+                                    <span class="count" id="tactics2-count">0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                                <div class="tactics-tags" id="tactics2-tags"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="synthesis-tab" class="tab-content">
+                        <div class="synthesis-header">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="8" cy="8" r="3" stroke="#8B5CF6" stroke-width="1.5"/>
+                                <circle cx="16" cy="8" r="3" stroke="#8B5CF6" stroke-width="1.5"/>
+                                <circle cx="12" cy="16" r="3" stroke="#8B5CF6" stroke-width="1.5"/>
+                                <path d="M10 10l2 4M14 10l-2 4" stroke="#8B5CF6" stroke-width="1.5"/>
+                            </svg>
+                            <h3>Synthesized Tactics</h3>
+                        </div>
+                        <div id="synthesized-tactics" class="tactics-grid"></div>
+                    </div>
+
+                    <div id="blueprint-tab" class="tab-content">
+                        <div id="blueprint-content"></div>
+                    </div>
+
+                    <div id="generate-tab" class="tab-content">
+                        <div class="generate-action">
+                            <p>Ready to generate your optimized script using the analyzed tactics?</p>
+                            <button id="generateBtn" class="btn-primary large">Generate Script</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Generation -->
+            <section id="step3" class="step-content">
+                <div class="step-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3l2 2-2 2M12 17l2 2-2 2M15 12H9" stroke="#4F46E5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>Your Generated Script</h2>
+                </div>
+
+                <div class="script-container">
+                    <div class="script-header">
+                        <div class="word-count">
+                            <span id="wordCount">0</span> words
+                        </div>
+                        <button id="copyScript" class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M13 7V5a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Copy Script
+                        </button>
+                    </div>
+                    <div id="generatedScript" class="generated-script"></div>
+                </div>
+
+                <div class="step-actions">
+                    <button id="viewMappingBtn" class="btn-secondary">View Tactic Mapping</button>
+                    <button id="proceedReviewBtn" class="btn-primary">Proceed to Review</button>
+                </div>
+            </section>
+
+            <!-- Step 4: Review -->
+            <section id="step4" class="step-content">
+                <div class="step-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12l5 5L20 7" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>Review & Refine</h2>
+                </div>
+
+                <div class="review-content">
+                    <div class="suggestions-panel">
+                        <h3>💡 Suggested Improvements</h3>
+                        <ul id="suggestionsList" class="suggestions-list"></ul>
+                    </div>
+
+                    <div class="mapping-panel">
+                        <h3>🗺️ Tactic Usage Map</h3>
+                        <div id="tacticMapping" class="tactic-mapping"></div>
+                    </div>
+                </div>
+
+                <div class="improvement-section">
+                    <h3>🚀 Improve Your Script</h3>
+                    <p>Select improvements to apply to your script:</p>
+                    <div class="improvement-options">
+                        <label class="improvement-option">
+                            <input type="checkbox" value="stronger-hook">
+                            <span>Stronger Opening Hook</span>
+                        </label>
+                        <label class="improvement-option">
+                            <input type="checkbox" value="more-emotional">
+                            <span>More Emotional Language</span>
+                        </label>
+                        <label class="improvement-option">
+                            <input type="checkbox" value="better-cta">
+                            <span>Stronger Call to Action</span>
+                        </label>
+                        <label class="improvement-option">
+                            <input type="checkbox" value="add-stories">
+                            <span>Add Story Examples</span>
+                        </label>
+                    </div>
+                    <button id="improveScriptBtn" class="btn-primary">Apply Improvements</button>
+                </div>
+
+                <div class="step-actions">
+                    <button id="startOverBtn" class="btn-secondary">Start New Script</button>
+                    <button id="downloadBtn" class="btn-primary">Download Script</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p id="loadingText">Analyzing scripts...</p>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message"></div>
+
+    <!-- Tactics Library Modal -->
+    <div id="tacticsLibraryModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>📚 Psychological Tactics Library</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tactics-filter">
+                    <button class="filter-btn active" data-filter="all">All Tactics</button>
+                    <button class="filter-btn" data-filter="hook">Hooks</button>
+                    <button class="filter-btn" data-filter="narrative">Narrative</button>
+                    <button class="filter-btn" data-filter="persuasion">Persuasion</button>
+                    <button class="filter-btn" data-filter="emotional">Emotional</button>
+                    <button class="filter-btn" data-filter="engagement">Engagement</button>
+                    <button class="filter-btn" data-filter="retention">Retention</button>
+                </div>
+                <div id="tacticsLibraryContent" class="tactics-library-grid">
+                    <!-- Tactics will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign In to PitchArchitect</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signInForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Sign In</button>
+                        <p class="form-help">Don't have an account? <a href="#" id="signUpLink">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Improvements</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Script Improvements</h1>
+        
+        <div style="margin: 20px 0;">
+            <h3>Original Script:</h3>
+            <pre id="originalScript" style="background: #f5f5f5; padding: 15px; border-radius: 8px;">
+Stop scrolling. I'm about to tell you why 97% of people fail at learning a new language.
+
+And no, it's not because they're not "gifted" with languages. It's not because they don't have time. It's not even because they're using the wrong app.
+
+The real reason? They're fighting against their own brain.
+
+Look, I get it. You've downloaded Duolingo. Maybe even paid for Babbel. You started strong - 10 minutes a day, they said. Easy, right?
+
+But here's what happened: Week one, you're on fire. Week two, you miss a day. Week three? The owl is sending passive-aggressive notifications while you pretend not to see them.
+            </pre>
+        </div>
+        
+        <div class="improvement-section" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h3>🚀 Test Improvements</h3>
+            <div class="improvement-options">
+                <label class="improvement-option">
+                    <input type="checkbox" value="stronger-hook" checked>
+                    <span>Stronger Opening Hook</span>
+                </label>
+                <label class="improvement-option">
+                    <input type="checkbox" value="more-emotional">
+                    <span>More Emotional Language</span>
+                </label>
+                <label class="improvement-option">
+                    <input type="checkbox" value="better-cta">
+                    <span>Stronger Call to Action</span>
+                </label>
+                <label class="improvement-option">
+                    <input type="checkbox" value="add-stories">
+                    <span>Add Story Examples</span>
+                </label>
+            </div>
+            <button id="testImprove" class="btn-primary" style="margin-top: 20px;">Test Improvements</button>
+        </div>
+        
+        <div id="result" style="margin-top: 20px;"></div>
+    </div>
+    
+    <script>
+        const testScript = document.getElementById('originalScript').textContent.trim();
+        
+        document.getElementById('testImprove').addEventListener('click', async () => {
+            const checkboxes = document.querySelectorAll('.improvement-option input:checked');
+            const improvements = Array.from(checkboxes).map(cb => cb.value);
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing improvements...</p>';
+            
+            try {
+                const response = await fetch('/api/improve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        script: testScript,
+                        improvements: improvements,
+                        topic: 'Learning Spanish Fast',
+                        callToAction: 'Download my free Spanish guide'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to improve script');
+                }
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <h3>✅ Improved Script:</h3>
+                    <pre style="background: #f0f9ff; padding: 15px; border-radius: 8px; white-space: pre-wrap;">${data.improvedScript}</pre>
+                    <p><strong>Word Count:</strong> ${data.wordCount} words</p>
+                    <p><strong>Using Claude:</strong> ${data.usingClaude ? 'Yes' : 'No (local engine)'}</p>
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

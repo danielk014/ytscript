@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PitchArchitect Test</title>
+</head>
+<body>
+    <h1>PitchArchitect Quick Test</h1>
+    <p>Open the browser console (F12) to see if there are any errors.</p>
+    
+    <div id="test-results"></div>
+    
+    <script>
+        const results = document.getElementById('test-results');
+        
+        // Test 1: Check if script.js loads without errors
+        const script = document.createElement('script');
+        script.src = 'script.js';
+        script.onload = () => {
+            results.innerHTML += '<p style="color: green;">✅ script.js loaded successfully</p>';
+        };
+        script.onerror = () => {
+            results.innerHTML += '<p style="color: red;">❌ script.js failed to load</p>';
+        };
+        
+        // Test 2: Check API
+        fetch('/api/examples')
+            .then(res => res.json())
+            .then(data => {
+                results.innerHTML += '<p style="color: green;">✅ API is working</p>';
+            })
+            .catch(err => {
+                results.innerHTML += '<p style="color: red;">❌ API error: ' + err + '</p>';
+            });
+            
+        // Add the script after setting up handlers
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

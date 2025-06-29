@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Test - PitchArchitect</title>
+</head>
+<body>
+    <h1>Minimal Test</h1>
+    
+    <div>
+        <h2>Basic Functionality Test</h2>
+        <button id="testBtn">Test API</button>
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        console.log('Minimal test script loaded');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded');
+            
+            const testBtn = document.getElementById('testBtn');
+            const result = document.getElementById('result');
+            
+            if (!testBtn) {
+                console.error('testBtn not found!');
+                return;
+            }
+            
+            testBtn.addEventListener('click', async () => {
+                console.log('Button clicked');
+                result.textContent = 'Loading...';
+                
+                try {
+                    // Test health endpoint
+                    const healthRes = await fetch('/health');
+                    const healthData = await healthRes.json();
+                    console.log('Health check:', healthData);
+                    
+                    // Test examples endpoint
+                    const examplesRes = await fetch('/api/examples');
+                    const examplesData = await examplesRes.json();
+                    console.log('Examples loaded');
+                    
+                    // Test analyze endpoint
+                    const analyzeRes = await fetch('/api/analyze', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            script1: examplesData.script1,
+                            script2: examplesData.script2,
+                            topic: 'Test topic',
+                            targetLength: 1400,
+                            callToAction: 'Test CTA'
+                        })
+                    });
+                    
+                    if (!analyzeRes.ok) {
+                        throw new Error(`HTTP error! status: ${analyzeRes.status}`);
+                    }
+                    
+                    const analyzeData = await analyzeRes.json();
+                    console.log('Analysis complete');
+                    
+                    result.innerHTML = `
+                        <p style="color: green;">✓ All tests passed!</p>
+                        <p>Health: ${healthData.status}</p>
+                        <p>Examples: ${examplesData.script1.substring(0, 50)}...</p>
+                        <p>Analysis: ${analyzeData.script.substring(0, 50)}...</p>
+                    `;
+                    
+                } catch (error) {
+                    console.error('Test failed:', error);
+                    result.innerHTML = `<p style="color: red;">✗ Test failed: ${error.message}</p>`;
+                }
+            });
+        });
+        
+        // Log any errors
+        window.addEventListener('error', (event) => {
+            console.error('Window error:', event.error);
+        });
+    </script>
+</body>
+</html>

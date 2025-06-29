@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - PitchArchitect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>PitchArchitect API Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Health Endpoint</h2>
+        <button onclick="testHealth()">Test /health</button>
+        <pre id="health-result"></pre>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Examples Endpoint</h2>
+        <button onclick="testExamples()">Test /api/examples</button>
+        <pre id="examples-result"></pre>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Analysis Endpoint</h2>
+        <button onclick="testAnalysis()">Test /api/analyze</button>
+        <pre id="analysis-result"></pre>
+    </div>
+    
+    <script>
+        async function testHealth() {
+            const resultEl = document.getElementById('health-result');
+            try {
+                const response = await fetch('/health');
+                const data = await response.json();
+                resultEl.innerHTML = '<span class="success">Success:</span>\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultEl.innerHTML = '<span class="error">Error:</span> ' + error.message;
+            }
+        }
+        
+        async function testExamples() {
+            const resultEl = document.getElementById('examples-result');
+            try {
+                const response = await fetch('/api/examples');
+                const data = await response.json();
+                resultEl.innerHTML = '<span class="success">Success:</span>\n' + JSON.stringify(data, null, 2).substring(0, 500) + '...';
+            } catch (error) {
+                resultEl.innerHTML = '<span class="error">Error:</span> ' + error.message;
+            }
+        }
+        
+        async function testAnalysis() {
+            const resultEl = document.getElementById('analysis-result');
+            resultEl.innerHTML = 'Loading example scripts first...';
+            
+            try {
+                // First get examples
+                const examplesResponse = await fetch('/api/examples');
+                const examples = await examplesResponse.json();
+                
+                resultEl.innerHTML = 'Analyzing scripts...';
+                
+                // Then analyze them
+                const analysisResponse = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        script1: examples.script1,
+                        script2: examples.script2,
+                        topic: 'How to learn Spanish fast',
+                        targetLength: 1400,
+                        callToAction: 'Download my free Spanish guide'
+                    })
+                });
+                
+                if (!analysisResponse.ok) {
+                    throw new Error(`HTTP error! status: ${analysisResponse.status}`);
+                }
+                
+                const data = await analysisResponse.json();
+                resultEl.innerHTML = '<span class="success">Success:</span>\n' + JSON.stringify(data, null, 2).substring(0, 500) + '...';
+            } catch (error) {
+                resultEl.innerHTML = '<span class="error">Error:</span> ' + error.message;
+                console.error('Full error:', error);
+            }
+        }
+        
+        // Test health endpoint on load
+        window.onload = () => {
+            testHealth();
+        };
+    </script>
+</body>
+</html>

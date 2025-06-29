@@ -1,0 +1,435 @@
+{
+  "analyses": [
+    {
+      "scriptNumber": 1,
+      "hookStrategy": [
+        {
+          "type": "Statistic Hook",
+          "content": "Stop scrolling. I'm about to tell you why 97% of people fail at learning a new language."
+        }
+      ],
+      "narrativeStructure": [
+        "Segmented Structure"
+      ],
+      "psychologicalTactics": [
+        {
+          "name": "Curiosity Gap",
+          "category": "hook",
+          "occurrences": 1
+        },
+        {
+          "name": "Direct Address",
+          "category": "engagement",
+          "occurrences": 1
+        },
+        {
+          "name": "Rhetorical Questions",
+          "category": "engagement",
+          "occurrences": 1
+        },
+        {
+          "name": "Authority",
+          "category": "persuasion",
+          "occurrences": 1
+        },
+        {
+          "name": "Fear Appeal",
+          "category": "emotional",
+          "occurrences": 1
+        },
+        {
+          "name": "Breadcrumbing",
+          "category": "retention",
+          "occurrences": 1
+        }
+      ],
+      "linguisticMarkers": [
+        "Conversational Tone",
+        "Short, Punchy Sentences",
+        "Power Words"
+      ],
+      "emotionTimeline": [
+        {
+          "section": 7,
+          "emotions": [
+            "urgency"
+          ],
+          "intensity": 1
+        }
+      ]
+    },
+    {
+      "scriptNumber": 2,
+      "hookStrategy": [
+        {
+          "type": "Question Hook",
+          "content": "What if I told you that everything you know about productivity is wrong?"
+        }
+      ],
+      "narrativeStructure": [
+        "Segmented Structure"
+      ],
+      "psychologicalTactics": [
+        {
+          "name": "Curiosity Gap",
+          "category": "hook",
+          "occurrences": 1
+        },
+        {
+          "name": "Direct Address",
+          "category": "engagement",
+          "occurrences": 1
+        },
+        {
+          "name": "Rhetorical Questions",
+          "category": "engagement",
+          "occurrences": 1
+        },
+        {
+          "name": "Social Proof",
+          "category": "persuasion",
+          "occurrences": 1
+        },
+        {
+          "name": "Authority",
+          "category": "persuasion",
+          "occurrences": 1
+        },
+        {
+          "name": "Fear Appeal",
+          "category": "emotional",
+          "occurrences": 1
+        },
+        {
+          "name": "Breadcrumbing",
+          "category": "retention",
+          "occurrences": 1
+        }
+      ],
+      "linguisticMarkers": [
+        "Conversational Tone",
+        "Short, Punchy Sentences",
+        "Power Words"
+      ],
+      "emotionTimeline": [
+        {
+          "section": 1,
+          "emotions": [
+            "urgency"
+          ],
+          "intensity": 1
+        },
+        {
+          "section": 19,
+          "emotions": [
+            "urgency"
+          ],
+          "intensity": 1
+        },
+        {
+          "section": 24,
+          "emotions": [
+            "urgency"
+          ],
+          "intensity": 1
+        }
+      ]
+    }
+  ],
+  "synthesizedTactics": [
+    [
+      "Curiosity Gap",
+      {
+        "name": "Curiosity Gap",
+        "category": "hook",
+        "occurrences": 1,
+        "scripts": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      "Direct Address",
+      {
+        "name": "Direct Address",
+        "category": "engagement",
+        "occurrences": 1,
+        "scripts": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      "Rhetorical Questions",
+      {
+        "name": "Rhetorical Questions",
+        "category": "engagement",
+        "occurrences": 1,
+        "scripts": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      "Authority",
+      {
+        "name": "Authority",
+        "category": "persuasion",
+        "occurrences": 1,
+        "scripts": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      "Fear Appeal",
+      {
+        "name": "Fear Appeal",
+        "category": "emotional",
+        "occurrences": 1,
+        "scripts": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      "Breadcrumbing",
+      {
+        "name": "Breadcrumbing",
+        "category": "retention",
+        "occurrences": 1,
+        "scripts": [
+          1,
+          2
+        ]
+      }
+    ],
+    [
+      "Social Proof",
+      {
+        "name": "Social Proof",
+        "category": "persuasion",
+        "occurrences": 1,
+        "scripts": [
+          2
+        ]
+      }
+    ]
+  ],
+  "blueprint": [
+    {
+      "section": "Opening Hook",
+      "timing": "0:00-0:15",
+      "tactics": [
+        "Pattern Interrupt",
+        "Curiosity Gap"
+      ],
+      "wordCount": 50
+    },
+    {
+      "section": "Problem Identification",
+      "timing": "0:15-1:00",
+      "tactics": [
+        "Empathy Building",
+        "Direct Address"
+      ],
+      "wordCount": 150
+    },
+    {
+      "section": "Solution Introduction",
+      "timing": "1:00-2:00",
+      "tactics": [
+        "Authority",
+        "Open Loop"
+      ],
+      "wordCount": 200
+    },
+    {
+      "section": "Main Point 1",
+      "timing": "2:00-3:00",
+      "tactics": [
+        "Social Proof",
+        "Future Pacing",
+        "Micro Commitments"
+      ],
+      "wordCount": 200
+    },
+    {
+      "section": "Main Point 2",
+      "timing": "3:00-4:00",
+      "tactics": [
+        "Social Proof",
+        "Future Pacing",
+        "Micro Commitments"
+      ],
+      "wordCount": 200
+    },
+    {
+      "section": "Main Point 3",
+      "timing": "4:00-5:00",
+      "tactics": [
+        "Social Proof",
+        "Future Pacing",
+        "Micro Commitments"
+      ],
+      "wordCount": 200
+    },
+    {
+      "section": "Call to Action",
+      "timing": "7:00-8:00",
+      "tactics": [
+        "Scarcity",
+        "Reciprocity",
+        "Direct Address"
+      ],
+      "wordCount": 200
+    }
+  ],
+  "mapping": [
+    {
+      "tactic": "Curiosity Gap",
+      "lineNumbers": [
+        1
+      ],
+      "content": "What if I told you that 93% of people doing How to..."
+    },
+    {
+      "tactic": "Curiosity Gap",
+      "lineNumbers": [
+        3
+      ],
+      "content": "But here's what nobody tells you......"
+    },
+    {
+      "tactic": "Curiosity Gap",
+      "lineNumbers": [
+        34
+      ],
+      "content": "But here's what the study didn't tell you......"
+    },
+    {
+      "tactic": "Curiosity Gap",
+      "lineNumbers": [
+        78
+      ],
+      "content": "But don't wait. Every day you delay is another day..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        1
+      ],
+      "content": "What if I told you that 93% of people doing How to..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        3
+      ],
+      "content": "But here's what nobody tells you......"
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        9
+      ],
+      "content": "You've probably tried:..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        14
+      ],
+      "content": "And you're still stuck, right?..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        16
+      ],
+      "content": "Let me break this down even further for you......"
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        24
+      ],
+      "content": "But before I reveal it, you need to understand why..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        34
+      ],
+      "content": "But here's what the study didn't tell you......"
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        42
+      ],
+      "content": "Every morning, before you do anything else, visual..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        48
+      ],
+      "content": "Try it tomorrow. Just once. You'll see the differe..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        72
+      ],
+      "content": "I've shared my best strategies with you today. Com..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        78
+      ],
+      "content": "But don't wait. Every day you delay is another day..."
+    },
+    {
+      "tactic": "Direct Address",
+      "lineNumbers": [
+        80
+      ],
+      "content": "Your future self is counting on you to make the ri..."
+    },
+    {
+      "tactic": "Authority",
+      "lineNumbers": [
+        11
+      ],
+      "content": "- The \"expert\" advice that sounds good but doesn't..."
+    },
+    {
+      "tactic": "Authority",
+      "lineNumbers": [
+        28
+      ],
+      "content": "The research is crystal clear on this:..."
+    },
+    {
+      "tactic": "Social Proof",
+      "lineNumbers": [
+        10
+      ],
+      "content": "- The popular methods everyone recommends..."
+    },
+    {
+      "tactic": "Social Proof",
+      "lineNumbers": [
+        52
+      ],
+      "content": "Most people approach How to learn Spanish fast com..."
+    }
+  ]
+}
